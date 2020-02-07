@@ -19,7 +19,7 @@
 
                         <div class="card-body">
 
-                            <h4> Bienvenido {{ $usuario =  auth()->user()->name}} Con el rol {{$rol}} </h4>
+                            <h4> Bienvenido {{ $usuario =  auth()->user()->name}} </h4>
 
                         </div>
                 </div>

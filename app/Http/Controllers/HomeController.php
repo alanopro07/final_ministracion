@@ -30,12 +30,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user = Auth::user()->email;
         $id = Auth::user()->id;
         $rol = DB::table('usuario')
             ->join('rol','rol.idrol','=','usuario.idrol')
+//            ->join('estado','estado.idestado','=','usuario_estado.idestado')
             ->select('rol.rol','rol.idrol')
-            ->where('usuario.iduser',$id)
+            ->where('usuario.idusuario',$id)
             ->first();
 
         //acceso a dashboard
@@ -65,6 +65,8 @@ class HomeController extends Controller
 
     public function pro()
     {
-        dd('asdasd');
+       $id = Auth::user()->id();
+
+        return view('L');
     }
 }
