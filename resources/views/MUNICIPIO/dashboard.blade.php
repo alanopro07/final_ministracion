@@ -7,22 +7,26 @@
                 <h1 class="text-center" >
                     Dashboard {{ $estado }}
                 </h1>
-                <div class="row">
-                    <div class="col-md-6">
+{{--                <form enctype="application/x-www-form-urlencoded" method="POST" action="{{route('cargaArchivos')}}">--}}
+                {{ Form::open(array('url' => 'cargarArchivos', 'method' => 'post')) }}
 
-                        <div class="form-group">
-                            <label>Numero de oficio</label>
-                            <input type="text" class="form-control">
+                @csrf
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label>Numero de oficio</label>
+                                <input type="number" enctype="multipart/form-data" class="form-control" name="numero_oficio">
+                            </div>
+                            <div class="form-group">
+                                <label>Fecha de oficio</label>
+                                <input size="16" type="text" class="form-control" id="datetime" name="fecha_oficio" readonly>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label>Fecha de oficio</label>
-                            <input size="16" type="text" class="form-control" id="datetime" readonly>
-                        </div>
-                    </div>
-                    <div class="col-md-6 subir-archivos flex flex-column">
-                        <div class="form-group">
-                            <label>Subir archivos (has clic en el boton)</label>
-                            <div class="input-group">
+                        <div class="col-md-6 subir-archivos flex flex-column">
+                            <div class="form-group">
+                                <label>Subir archivos (has clic en el boton)</label>
+                                <div class="input-group">
                             <span class="input-group-btn">
                                     <!-- image-preview-input -->
                                     <div class="btn btn-default carga-archivo-input">
@@ -31,10 +35,10 @@
                                         <!-- rename it -->
                                     </div>
                             </span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="input-group">
+                            <div class="form-group">
+                                <div class="input-group">
                             <span class="input-group-btn">
                                     <!-- image-preview-input -->
                                     <div class="btn btn-default carga-archivo-input">
@@ -43,10 +47,10 @@
                                         <!-- rename it -->
                                     </div>
                             </span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="input-group">
+                            <div class="form-group">
+                                <div class="input-group">
                             <span class="input-group-btn">
                                     <!-- image-preview-input -->
                                     <div class="btn btn-default carga-archivo-input">
@@ -55,10 +59,10 @@
                                         <!-- rename it -->
                                     </div>
                             </span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="input-group">
+                            <div class="form-group">
+                                <div class="input-group">
                             <span class="input-group-btn">
                                     <!-- image-preview-input -->
                                     <div class="btn btn-default carga-archivo-input">
@@ -67,23 +71,24 @@
                                         <!-- rename it -->
                                     </div>
                             </span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="input-group">
-                            <span class="input-group-btn">
-                                    <!-- image-preview-input -->
-                                    <div class="btn btn-default carga-archivo-input">
-                                        <span class="carga-archivo-input-title">Cedula fiscal</span>
-                                        <input type="file" accept="application/pdf" name="cedula_fiscal" />
-                                        <!-- rename it -->
-                                    </div>
-                            </span>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                            <!-- image-preview-input -->
+                                            <div class="btn btn-default carga-archivo-input">
+                                                <span class="carga-archivo-input-title">Cedula fiscal</span>
+                                                <input type="file" accept="application/pdf" name="cedula_fiscal" />
+                                                <!-- rename it -->
+                                            </div>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
+                    <button type="submit" class="btn btn-lg btn-primary">Enviar</button>
+                </form>
             </div>
         </div>
     </div>

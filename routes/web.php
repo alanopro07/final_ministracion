@@ -22,6 +22,7 @@ Route::get('/prueba','usuarioModelController@prueba')->name('prueba');
 
 //rutas de dashboard
 Route::get('municipio','municipioController@dashboardMunicipio')->name('municipio');
+Route::post('cargarArchivos','municipioController@cargaArchivos')->name('cargarArchivos');
 Route::get('entidad','HomeController@pro')->name('entidad');
 Route::get('dga','HomeController@pro')->name('dga');
 Route::get('dgvys','HomeController@pro')->name('dgvys');

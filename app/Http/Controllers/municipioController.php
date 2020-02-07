@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Response;
 
 class municipioController extends AppBaseController
@@ -45,8 +46,18 @@ class municipioController extends AppBaseController
             ->select('estado.estado')
             ->where('usuario_estado.idusuario_estado',1)
             ->first();
-
-
         return view('MUNICIPIO.dashboard')->with('estado',$estado->estado);
+    }
+
+    public function cargaArchivos(Request $request)
+    {
+        $datos = $request->all();
+//        dd($datos);
+
+        Storage::disk('storage_constancia_nombramiento')->put($request['constancia_nombramiento']);
+        dd('asdasd');
+
+//        Storage::put()
+//        Storage::
     }
 }

@@ -48,9 +48,34 @@ return [
             'root' => storage_path('app'),
         ],
 
-        'public' => [
+        'storage_constancia_nombramiento' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
+            'root' => storage_path('app/public/storage/constancia_nombramiento'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+
+        'storage_comprobante_domicilio_fiscal' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/storage/comprobante_domicilio_fiscal'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+        'storage_oficio' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/storage/oficio'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+        'storage_carta_bancaria' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/storage/carta_bancaria'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+        'storage_cedula_fiscal' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/storage/carta_bancaria_cedula_fiscal'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
