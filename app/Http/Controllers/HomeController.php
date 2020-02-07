@@ -30,16 +30,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $id = Auth::user()->id;
-        $rol = DB::table('usuario')
-            ->join('rol','rol.idrol','=','usuario.idrol')
-//            ->join('estado','estado.idestado','=','usuario_estado.idestado')
-            ->select('rol.rol','rol.idrol')
-            ->where('usuario.idusuario',$id)
-            ->first();
+        $id = Auth::user()->idrol;
+
 
         //acceso a dashboard
-        if ($rol->idrol == rolModel::ROL_MUNICIPIO_1 || $rol->idrol == rolModel::ROL_MUNICIPIO_2)
+        if ($id == rolModel::ROL_MUNICIPIO_1 || $id == rolModel::ROL_MUNICIPIO_2)
         {
             return redirect()->route('municipio');
         }

@@ -49522,9 +49522,14 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+// const app = new Vue({
+//     el: '#app',
+// });
 
-var app = new Vue({
-  el: '#app'
+$(document).ready(function () {
+  $('#datetime').datepicker({
+    format: 'dd/mm/yyyy'
+  });
 });
 
 /***/ }),

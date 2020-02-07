@@ -21,7 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/prueba','usuarioModelController@prueba')->name('prueba');
 
 //rutas de dashboard
-Route::get('municipio','HomeController@pro')->name('municipio');
+Route::get('municipio','municipioController@dashboardMunicipio')->name('municipio');
 Route::get('entidad','HomeController@pro')->name('entidad');
 Route::get('dga','HomeController@pro')->name('dga');
 Route::get('dgvys','HomeController@pro')->name('dgvys');
