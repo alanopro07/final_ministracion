@@ -32,6 +32,6 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 // });
 $(document).ready(function() {
     $('#datetime').datepicker({
-        format: 'dd/mm/yyyy'
+        format: 'yyyy/mm/dd'
     });
 });

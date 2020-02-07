@@ -49528,7 +49528,7 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
 
 $(document).ready(function () {
   $('#datetime').datepicker({
-    format: 'dd/mm/yyyy'
+    format: 'yyyy/mm/dd'
   });
 });
 
