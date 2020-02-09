@@ -57,7 +57,7 @@ return [
 
         'storage_comprobante_domicilio_fiscal' => [
             'driver' => 'local',
-            'root' => storage_path('app/public/storage/comprobante_domicilio_fiscal'),
+            'root' => storage_path('app/public/storage/domicilio_fiscal'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
@@ -75,7 +75,7 @@ return [
         ],
         'storage_cedula_fiscal' => [
             'driver' => 'local',
-            'root' => storage_path('app/public/storage/carta_bancaria_cedula_fiscal'),
+            'root' => storage_path('app/public/storage/cedula_fiscal'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],

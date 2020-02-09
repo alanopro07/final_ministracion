@@ -49528,7 +49528,9 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
 
 $(document).ready(function () {
   $('#datetime').datepicker({
-    format: 'yyyy/mm/dd'
+    format: 'yyyy/mm/dd',
+    autoclose: true,
+    todayBtn: true
   });
 });
 

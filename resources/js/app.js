@@ -32,6 +32,8 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 // });
 $(document).ready(function() {
     $('#datetime').datepicker({
-        format: 'yyyy/mm/dd'
+        format: 'yyyy/mm/dd',
+        autoclose: true,
+        todayBtn: true
     });
 });
