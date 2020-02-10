@@ -44,18 +44,22 @@ class municipioController extends AppBaseController
             ->select('estado.estado')
             ->where('usuario_estado.idusuario_estado',1)
             ->first();
-//        $municipio = DB::table('usuario_municipio')
-//            ->join('municipio','municipio.')
-//            ->select()
-//            ->where()
-//            ->first();
+
+        $municipio = DB::table('usuario_municipio')
+            ->join('municipio','municipio.idmunicipio','=','usuario_municipio.idmunicipio')
+            ->select('municipio.municipio')
+            ->where('usuario_municipio.idusuario',1)
+            ->first();
+
 //        $this->cargaArchivos($estado->estado);
-        return view('MUNICIPIO.dashboard')->with('estado',$estado->estado);
+        return view('MUNICIPIO.dashboard')
+            ->with('estado',$estado->estado)
+            ->with('municipio',$municipio->municipio);
     }
 
     public function cargaArchivos(Request $request)
     {
-        $municipio = 0;
+
         //respuesta
         $file_comprobante_nombramiento = !empty($request->file('constancia_nombramiento')) ? $request->file('constancia_nombramiento') : '';
         $file_comprobante_domicilio_fiscal = !empty($request->file('comprobante_domicilio_fiscal')) ? $request->file('comprobante_domicilio_fiscal') : '';
@@ -86,7 +90,6 @@ class municipioController extends AppBaseController
         Storage::disk('storage_carta_bancaria')->putFileAs('comprobante_carta_bancaria'.$municipio.'',$file_comprobante_carta_bancaria, $name_comprobante_carta_bancaria);
         Storage::disk('storage_cedula_fiscal')->putFileAs('comprobante_cedula_fiscal'.$municipio.'',$file_comprobante_cedula_fiscal, $name_comprobante_cedula_fiscal);
 
-    dd('pass');
-        $filePath = Storage::disk('dispersion')->getDriver()->getAdapter()->applyPathPrefix('conciliacion/'.$name);
+        $filePath = Storage::disk('v')->getDriver()->getAdapter()->applyPathPrefix('conciliacion/'.$name);
     }
 }

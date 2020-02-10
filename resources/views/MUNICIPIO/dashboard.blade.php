@@ -4,47 +4,47 @@
         <div class="row text-center">
             <div class="col-md-12 bg-light">
                 <h1 class="text-center" >
-                    Crear movimiento para - {{ $estado }} -
+                    Crear movimiento de - {{ $estado }} - {{$municipio}}
                 </h1>
 
-                <table class="activities">
-                    <caption>Lista de Movimientos</caption>
-                    <thead>
-                    <tr>
-                        <th>Entidad - Municipio</th>
-                        <th>Fecha de Movimiento</th>
-                        <th>Número de Oficio</th>
-                        <th>Fecha de Oficio</th>
-                        <th>Comentarios</th>
-                        <th>Estatus</th>
-                        <th>Observación</th>
-                        <th>Acción</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-{{--                    @foreach($tableRows as $row)--}}
-                        <tr>
-                            <td>prueba</td>
-                            <td>prueba</td>
-                            <td>prueba</td>
-                            <td>prueba</td>
-                            <td>prueba</td>
-                            <td>prueba</td>
-                            <td>prueba</td>
-                            <td>
-                                <button type="button">Revisar</button>
-                            </td>
-                        </tr>
-{{--                    @endforeach--}}
-                    </tbody>
-                    <tfoot></tfoot>
-                </table>
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>Entidad - Municipio</th>
+                                        <th>Fecha de Movimiento</th>
+                                        <th>Número de Oficio</th>
+                                        <th>Fecha de Oficio</th>
+                                        <th>Comentarios</th>
+                                        <th>Estatus</th>
+                                        <th>Observación</th>
+                                        <th>Acción</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                {{--@foreach($tableRows as $row)--}}
+                                        <tr>
+                                            <td>{{$estado}}- {{$municipio}}</td>
+                                            <td>prueba</td>
+                                            <td>prueba</td>
+                                            <td>prueba</td>
+                                            <td>prueba</td>
+                                            <td>prueba</td>
+                                            <td>prueba</td>
+                                            <td>
+                                                <a href="#" class="btn btn-primary" type="button">Revisar</a>
+                                            </td>
+                                        </tr>
+                                {{-- @endforeach--}}
+                                    </tbody>
+                                    <tfoot></tfoot>
+                                </table>
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                    Crear ministración
-                </button>
-
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                Crear ministración
+                            </button>
+                </div>
             </div>
+        </div>
 
 
         <!-- Modal -->
@@ -52,17 +52,12 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Llenar Documentacion</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-
-                            {{-- Contenido del modal --}}
-                            <h1 class="text-center" >
-                                Crear movimiento para - {{ $estado }} -
-                            </h1>
                             {{--                <form enctype="application/x-www-form-urlencoded" method="POST" action="{{route('cargaArchivos')}}">--}}
                             {{ Form::open(array('url' => 'cargarArchivos', 'method' => 'post' , 'accept-charset' =>"UTF-8",'enctype' => 'multipart/form-data'))  }}
 
@@ -71,12 +66,26 @@
                                 <div class="col-md-6">
 
                                     <div class="form-group">
+                                        <label>Estado:</label>
+                                        <input type="text"  class="form-control"  id="{{$estado}}" name="estado" value="{{$estado}}" placeholder="{{$estado}}" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Municipio:</label>
+                                        <input type="text"  class="form-control"  id="{{$municipio}}" name="estado" value="{{$municipio}}" placeholder="{{$municipio}}" readonly>
+                                    </div>
+
+                                    <div class="form-group">
                                         <label>Numero de oficio</label>
-                                        <input type="number" enctype="multipart/form-data" class="form-control" name="numero_oficio">
+                                        <input type="text" id="numero_oficio" class="form-control" name="numero_oficio">
                                     </div>
                                     <div class="form-group">
                                         <label>Fecha de oficio</label>
                                         <input size="16" type="text" class="form-control" id="datetime" name="fecha_oficio" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Comentarios:</label>
+                                        <textarea   rows="4" cols="50" size="16" type="text" class="form-control" name="commentarios" >
+                                        </textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-6 subir-archivos flex flex-column">
@@ -86,7 +95,7 @@
                                         <span class="input-group-btn">
                                                 <!-- image-preview-input -->
                                                 <div class="btn btn-default carga-archivo-input">
-                                                    <span class="carga-archivo-input-title">Constancia nombramiento</span>
+                                                    <span class="carga-archivo-input-title">Carta coparticipacion</span>
                                                     <input type="file" accept="application/pdf" name="constancia_nombramiento" />
                                                     <!-- rename it -->
                                                 </div>
@@ -122,7 +131,7 @@
                                         <span class="input-group-btn">
                                                 <!-- image-preview-input -->
                                                 <div class="btn btn-default carga-archivo-input">
-                                                    <span class="carga-archivo-input-title">Carta bancaria</span>
+                                                    <span class="carga-archivo-input-title">Carta bancaria </span>
                                                     <input type="file" accept="application/pdf" name="carta_bancaria" />
                                                     <!-- rename it -->
                                                 </div>
@@ -146,18 +155,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-lg btn-primary">Enviar</button>
                             {{--                </form>--}}
                         </div>
-
-                    </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
+                            <button type="submit" class="btn btn-lg btn-primary">Enviar</button>
+                            <button type="button" class="btn btn-lg btn-primary" data-dismiss="modal">Cerrar</button>
                         </div>
-                    </div>
                 </div>
-            </div>
 @endsection
 
 

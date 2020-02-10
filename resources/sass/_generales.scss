@@ -15,7 +15,7 @@ body{
     position: relative;
     overflow: hidden;
     margin: 0px;
-    color: #333;
+    color: #f8f8f8;
     background-color: #621132;
     color: #f8f8f8;
     border-color: #ccc;
@@ -30,7 +30,13 @@ body{
     cursor: pointer;
     opacity: 0;
     filter: alpha(opacity=0);
+    :hover
+    {
+        color: #1b4b72;
+    }
 }
 .carga-archivo-input-title {
     margin-left:2px;
 }
+
+

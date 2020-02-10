@@ -31,37 +31,29 @@ class HomeController extends Controller
     public function index()
     {
         $id = Auth::user()->idrol;
-
-
         //acceso a dashboard
         if ($id == rolModel::ROL_MUNICIPIO_1 || $id == rolModel::ROL_MUNICIPIO_2)
         {
             return redirect()->route('municipio');
         }
 
-        if($rol->idrol == rolModel::ROL_ENTIDAD_FEDERATIVA_1 || $rol->idrol == rolModel::ROL_ENTIDAD_FEDERATIVA_2)
+        if($id == rolModel::ROL_ENTIDAD_FEDERATIVA_1 || $id == rolModel::ROL_ENTIDAD_FEDERATIVA_2)
         {
             return redirect()->route('entidad');
         }
 
-        if($rol->idrol == rolModel::ROL_DGA)
+        if($id == rolModel::ROL_DGA)
         {
             return redirect()->route('dga');
 
         }
 
-        if($rol->idrol == rolModel::ROL_DGVyS)
+        if($id == rolModel::ROL_DGVyS)
         {
             return redirect()->route('dgvys');
         }
 
-        return view('home')->with('rol', $rol->rol);
+        return abort(404);
     }
 
-    public function pro()
-    {
-       $id = Auth::user()->id();
-
-        return view('L');
-    }
 }

@@ -10903,7 +10903,7 @@ body .btn-primary {
   position: relative;
   overflow: hidden;
   margin: 0px;
-  color: #333;
+  color: #f8f8f8;
   background-color: #621132;
   color: #f8f8f8;
   border-color: #ccc;
@@ -10919,6 +10919,10 @@ body .btn-primary {
   cursor: pointer;
   opacity: 0;
   filter: alpha(opacity=0);
+}
+
+.carga-archivo-input input[type=file] :hover {
+  color: #1b4b72;
 }
 
 .carga-archivo-input-title {
