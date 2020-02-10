@@ -71,7 +71,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Municipio:</label>
-                                        <input type="text"  class="form-control"  id="{{$municipio}}" name="estado" value="{{$municipio}}" placeholder="{{$municipio}}" readonly>
+                                        <input type="text"  class="form-control"  id="{{$municipio}}" name="municipio" value="{{$municipio}}" placeholder="{{$municipio}}" readonly>
                                     </div>
 
                                     <div class="form-group">
@@ -84,7 +84,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Comentarios:</label>
-                                        <textarea   rows="4" cols="50" size="16" type="text" class="form-control" name="commentarios" >
+                                        <textarea  cols="50" size="16" type="text" class="form-control" name="comentario" >
                                         </textarea>
                                     </div>
                                 </div>
