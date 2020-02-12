@@ -4,7 +4,7 @@
         <div class="row text-center">
             <div class="col-md-12 bg-light">
                 <h1 class="text-center" >
-                    Crear movimiento de - {{ $estado }} - {{$municipio}}
+                    Crear movimiento de - {{ $estado}} - {{$municipio}}
                 </h1>
 
                                 <table class="table">
@@ -21,26 +21,33 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                {{--@foreach($tableRows as $row)--}}
+                                @foreach($datos as $dato)
                                         <tr>
                                             <td>{{$estado}}- {{$municipio}}</td>
-                                            <td>prueba</td>
-                                            <td>prueba</td>
-                                            <td>prueba</td>
-                                            <td>prueba</td>
-                                            <td>prueba</td>
-                                            <td>prueba</td>
+                                            <td>{{$dato->fechamovimiento}}</td>
+                                            <td>{{$dato->numoficio}}</td>
+                                            <td>{{$dato->fechaoficio}}</td>
+                                            <td>{{$dato->comentario}}</td>
+                                            <td>@if($dato->status == 1)
+                                                    ENVIADO
+                                                @elseif($dato->status == 3)
+                                                    RECHAZADO
+                                                @elseif($dato->status == 2 )
+                                                    ATENDIDO
+                                                @endif
+                                            </td>
+                                            <td>{{$dato->observacion}}</td>
                                             <td>
-                                                <a href="#" class="btn btn-primary" type="button">Revisar</a>
+                                                <a href="#"  class="btn btn-primary" type="button" disabled="{{$dato->status == '' ? true : false }}">Ver detalle</a>
                                             </td>
                                         </tr>
-                                {{-- @endforeach--}}
+                                 @endforeach
                                     </tbody>
                                     <tfoot></tfoot>
                                 </table>
                 <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                Crear ministración
+                                Crear movimiento
                             </button>
                 </div>
             </div>
@@ -66,12 +73,12 @@
                                 <div class="col-md-6">
 
                                     <div class="form-group">
-                                        <label>Estado:</label>
-                                        <input type="text"  class="form-control"  id="{{$estado}}" name="estado" value="{{$estado}}" placeholder="{{$estado}}" readonly>
+                                        <label>Estado: {{$estado}}</label>
+                                        <input type="hidden"  class="form-control"  id="{{$estado}}" name="estado" value="{{$idestado}}" placeholder="{{$estado}}" readonly>
                                     </div>
                                     <div class="form-group">
-                                        <label>Municipio:</label>
-                                        <input type="text"  class="form-control"  id="{{$municipio}}" name="municipio" value="{{$municipio}}" placeholder="{{$municipio}}" readonly>
+                                        <label>Municipio: {{$municipio}}</label>
+                                        <input type="hidden"  class="form-control"  id="{{$municipio}}" name="municipio" value="{{$idmunicipio}}" placeholder="{{$municipio}}" readonly>
                                     </div>
 
                                     <div class="form-group">
@@ -84,7 +91,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Comentarios:</label>
-                                        <textarea  cols="50" size="16" type="text" class="form-control" name="comentario" >
+                                        <textarea type="text" class="form-control" name="comentario" >
+
                                         </textarea>
                                     </div>
                                 </div>

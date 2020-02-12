@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model as Model;
  * @property \App\Models\Rol idrol
  * @property \Illuminate\Database\Eloquent\Collection estados
  * @property \Illuminate\Database\Eloquent\Collection datosBancarios
- * @property integer idrol
+// * @property integer idrol
  * @property string nombre
  * @property string apellidopaterno
  * @property string apellidomaterno

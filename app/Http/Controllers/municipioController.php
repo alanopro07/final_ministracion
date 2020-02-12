@@ -5,12 +5,16 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreatemunicipioRequest;
 use App\Http\Requests\UpdatemunicipioRequest;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Support\Facades\Crypt;
 use App\Models\movimientoModel;
+use App\Models\usuarioModel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Flash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Response;
 
@@ -33,53 +37,85 @@ class municipioController extends AppBaseController
      */
     public function index(Request $request)
     {
-//        $municipios = $this->municipioRepository->all();
 
     }
 
 
     public function dashboardMunicipio(Request $los)
     {
-        $id = Auth::user()->id;
+        $id = Auth::user()->idusuario;
+
         //se obtienen los estados
-        $estado = DB::table('usuario_estado')
-            ->join('estado','estado.idestado','=','usuario_estado.idestado')
-            ->select('estado.estado')
-            ->where('usuario_estado.idusuario_estado',1)
+        $estado = DB::table('estado_1')
+            ->join('municipio_1','municipio_1.idestado','=','estado_1.idestado')
+            ->join('usuario_municipio','usuario_municipio.idmunicipio','=','municipio_1.idmunicipio')
+            ->select('estado_1.idestado','estado_1.estado')
+            ->where('usuario_municipio.idusuario',$id)
             ->first();
 
-        $municipio = DB::table('usuario_municipio')
-            ->join('municipio','municipio.idmunicipio','=','usuario_municipio.idmunicipio')
-            ->select('municipio.municipio')
-            ->where('usuario_municipio.idusuario',1)
+        // se obtiene el municipio
+        $municipio = DB::table('municipio_1')
+            ->join('usuario_municipio','usuario_municipio.idmunicipio','=','municipio_1.idmunicipio')
+            ->select('municipio_1.idmunicipio','municipio_1.municipio')
+            ->where('usuario_municipio.idusuario',$id)
             ->first();
 
-//        $this->cargaArchivos($estado->estado);
+        //CONSULTA MOVIMIENTOS PARA TABLA
+        $builder = DB::table('movimiento')
+            ->select('fechamovimiento','numoficio','fechaoficio','comentario','status','observacion')
+            ->where('id_usuario',$id)
+            ->get();
+
         return view('MUNICIPIO.dashboard')
             ->with('estado',$estado->estado)
-            ->with('municipio',$municipio->municipio);
+            ->with('municipio',$municipio->municipio)
+            ->with('idestado',$estado->idestado)
+            ->with('idmunicipio',$municipio->idmunicipio)
+            ->with('datos',$builder);
+
     }
+
 
     public function cargaArchivos(Request $request)
     {
+       $usuario  = usuarioModel::find(2);
+       $pass = $usuario->clave;
 
-        $id_usuario = Auth::user()->id;
+        $final = DB::table('usuario')
+            ->select()
+        dd($message);
+        if (Hash::needsRehash($usuario)){
+
+        }
+        $id_usuario = Auth::user()->idusuario;
+
+        $ministracion =  DB::table('ministracion')
+            ->select('idministracion')
+            ->where([
+                ['idestado',$request['estado']],
+                ['idmunicipio',$request['municipio']]
+            ])
+            ->first();
+
+
         // se inicia el llenado de ministración
         DB::beginTransaction();
         DB::table('movimiento')->insert([
-             'fechamovimiento' =>Carbon::now(),
-             'numoficio' => $request['numero_oficio'],
-             'fechaoficio' => $request['fecha_oficio'],
-             'id_usuario' => $id_usuario,
-             'tipomovimiento' => movimientoModel::MUNICIPIO,
-             'comentario' => $request['comentario'],
-             'paso' => movimientoModel::Paso_inicial,
-             'origen' => movimientoModel::MUNICIPIO,
-             'destino' => movimientoModel::DGVA,
-             'status' => movimientoModel::ESTATUS_ENVIADO
+            'idministracion' => $ministracion->idministracion,
+            'fechamovimiento' =>Carbon::now(),
+            'numoficio' => $request['numero_oficio'],
+            'fechaoficio' => $request['fecha_oficio'],
+            'id_usuario' => $id_usuario,
+            'tipomovimiento' => movimientoModel::MUNICIPIO,
+            'comentario' => $request['comentario'],
+            'paso' => movimientoModel::Paso_inicial,
+            'origen' => movimientoModel::MUNICIPIO,
+            'destino' => movimientoModel::DGVA,
+            'status' => movimientoModel::ESTATUS_ENVIADO
             ]);
         DB::commit();
 
+//        dd($request->toArray());
         //respuesta
         $file_comprobante_nombramiento = !empty($request->file('constancia_nombramiento')) ? $request->file('constancia_nombramiento') : '';
         $name_comprobante_nombramiento = $file_comprobante_nombramiento->getClientOriginalName();
@@ -123,8 +159,10 @@ class municipioController extends AppBaseController
 
         $this->filepathSave($name_comprobante_cedula_fiscal,$filePath_cedula_fiscal,$extension_comprobante_cedula_fiscal);
 
+        //llamado a mensaje alerta
         return back()->with('success','Operacion creada con exito!');
     }
+
 
     public function filepathSave($param1,$param2,$param3)
     {
@@ -137,5 +175,32 @@ class municipioController extends AppBaseController
         ]);
         DB::commit();
 
+    }
+
+    public function cargaCartaBancaria()
+    {
+        return view('MUNICIPIO.documentos.carta_bancaria');
+    }
+
+    public function cargaCooparticipacion()
+    {
+        return view('MUNICIPIO.documentos.cooparticipacion');
+    }
+
+
+    public function cargarDatosCartaBacaria(Request $request)
+    {
+
+        dd($request->toArray());
+    }
+
+    public function cargaCedulaFIscal()
+    {
+        return view('MUNICIPIO.documentos.cedula_fiscal');
+    }
+
+    public function cargaDomicilio()
+    {
+        return view('MUNICIPIO.documentos.domicilio');
     }
 }

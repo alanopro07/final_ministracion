@@ -10909,6 +10909,15 @@ body .btn-primary {
   border-color: #ccc;
 }
 
+.carga-archivo-input:hover {
+  position: relative;
+  overflow: hidden;
+  margin: 0px;
+  background-color: #f8f8f8;
+  color: #621132;
+  border-color: #ccc;
+}
+
 .carga-archivo-input input[type=file] {
   position: absolute;
   top: 0;
@@ -10927,5 +10936,16 @@ body .btn-primary {
 
 .carga-archivo-input-title {
   margin-left: 2px;
+}
+
+button.btn-primary {
+  border-color: #621132;
+  margin-bottom: 10px;
+}
+
+button.btn-primary:hover {
+  color: #621132;
+  background-color: #f8f8f8;
+  border-color: #4c110f;
 }
 

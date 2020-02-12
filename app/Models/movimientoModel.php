@@ -34,8 +34,10 @@ class movimientoModel extends Model
     const MUNICIPIO = 1;
     const  DGVA = 2;
 
-    const ESTATUS_ENVIADO = 2;
-    const ESTATUS_ATENDIDO = 1;
+    const ESTATUS_ENVIADO = 1;
+    const ESTATUS_ATENDIDO = 2;
+    const ESTATUS_APROBADO = 3;
+    const ESTATUS_RECHAZADO = 4;
     public $table = 'movimiento';
 
     const CREATED_AT = 'created_at';

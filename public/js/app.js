@@ -49533,6 +49533,20 @@ $(document).ready(function () {
     todayBtn: true
   });
 });
+$(function () {
+  $('.validanumericos').keypress(function (e) {
+    if (isNaN(this.value + String.fromCharCode(e.charCode))) return false;
+  }).on("cut copy paste", function (e) {
+    e.preventDefault();
+  });
+});
+$('#situacion').on('change', function () {
+  this.value = this.checked ? 1 : 0; // alert(this.value);
+}).change();
+
+if (document.getElementById("situacion").checked) {
+  document.getElementById('situacion1').disabled = true;
+}
 
 /***/ }),
 
