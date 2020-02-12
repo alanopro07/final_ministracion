@@ -12,7 +12,6 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Flash;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -81,8 +80,7 @@ class municipioController extends AppBaseController
        $usuario  = usuarioModel::find(2);
        $pass = $usuario->clave;
 
-        $final = DB::table('usuario')
-            ->select()
+        $message = Crypt::decrypt($pass);
         dd($message);
         if (Hash::needsRehash($usuario)){
 

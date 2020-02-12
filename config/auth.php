@@ -64,6 +64,10 @@ return [
     | Supported: "database", "eloquent"
     |
     */
+    'usuarios' => [
+        'driver' => 'eloquent',
+        'model' => App\usuarioModel ::class,
+    ],
 
     'providers' => [
         'users' => [
@@ -91,6 +95,12 @@ return [
     | they have less time to be guessed. You may change this as needed.
     |
     */
+
+    'usuarios' => [
+        'provider' => 'usuarios',
+        'table' => 'password_resets',
+        'expire' => 60,
+    ],
 
     'passwords' => [
         'users' => [

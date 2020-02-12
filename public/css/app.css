@@ -10949,3 +10949,13 @@ button.btn-primary:hover {
   border-color: #4c110f;
 }
 
+.back {
+  background-image: url(/images/back_red.png?55bf387e65b98344f29c83d473782a7b);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+

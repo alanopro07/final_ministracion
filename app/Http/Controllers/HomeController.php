@@ -23,6 +23,11 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
+    public function showLoginForm()
+    {
+        dd('asdasd');
+        return view('Login');
+    }
     /**
      * Show the application dashboard.
      *

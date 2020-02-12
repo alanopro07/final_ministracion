@@ -45,7 +45,6 @@ body{
 }
 .carga-archivo-input-title {
     margin-left:2px;
-
 }
 
 button.btn-primary{
@@ -60,3 +59,12 @@ button.btn-primary:hover{
     border-color: #4c110f;
 }
 
+.back{
+    background-image : url('public/img/back_red.png');
+    background-size: cover ;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
