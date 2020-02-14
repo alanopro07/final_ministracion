@@ -50,7 +50,11 @@ class municipioController extends AppBaseController
             ->leftJoin('estado','estado.idestado','=','municipio.idestado')
             ->where('usuario.idusuario',$id)->first();
 
-        return view('MUNICIPIO.dashboard')->with('municipio',$builder->municipio);
+        //llamadp a la funcion para e guardado
+        $consulta = $this->consultaTabla();
+
+        return view('MUNICIPIO.dashboard')->with('municipio',$builder->municipio)
+            ->with('consulta',$consulta);
 
     }
 
@@ -173,5 +177,12 @@ class municipioController extends AppBaseController
     public function cargaDomicilio()
     {
         return view('MUNICIPIO.documentos.domicilio');
+    }
+
+    public function consultaTabla()
+    {
+        //aqui se cinsultara lo relacionado al dashboard del municipio
+
+
     }
 }

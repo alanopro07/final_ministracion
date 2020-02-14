@@ -60,3 +60,18 @@ button.btn-primary:hover{
     border-color: #4c110f;
 }
 
+table{
+    th {
+        color: #621132;
+        font-size: 14px;
+    }
+    td{
+        font-size: 14px;
+        color: black;
+        a:hover {
+            color: #621132;
+            background-color: #f8f8f8;
+            border-color: #4c110f;
+        }
+    }
+}

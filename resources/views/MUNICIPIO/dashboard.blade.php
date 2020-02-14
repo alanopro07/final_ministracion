@@ -1,15 +1,15 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="col-md-2 d-flex bg-dark d-flex justify-content-center align-items-center ">
+        <div class="row ">
+            <div class="col-md-2 d-flex bg-dark d-flex justify-content-center align-items-center rounded ">
                 <button type="button" class="btn btn-primary"  >
                     Crear movimiento
                 </button>
             </div>
-            <div class="col-md-10 bg-light">
+            <div class="col-md-10 bg-light rounded">
                 <h1 class="text-center" >
-                    Crear movimiento {{$municipio}}
+                    Ministración municipio: {{$municipio}}
                 </h1>
                     <table class="table">
                         <thead>
@@ -26,15 +26,15 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>prueba</td>
+                                <td>prueba</td>
+                                <td>prueba</td>
+                                <td>prueba</td>
+                                <td>prueba</td>
+                                <td>prueba</td>
+                                <td>prueba</td>
                                 <td>
-                                    <a href="#"  class="btn btn-primary" type="button">Ver detalle</a>
+                                    <a href="#"  class="btn btn-sm btn-primary" type="button">Ver documentación</a>
                                 </td>
                             </tr>
                         </tbody>
