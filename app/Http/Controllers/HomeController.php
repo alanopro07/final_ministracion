@@ -30,7 +30,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $id = Auth::user()->idrol;
+        $id = Auth::user()->idRol;
+
         //acceso a dashboard
         if ($id == rolModel::ROL_MUNICIPIO_1 || $id == rolModel::ROL_MUNICIPIO_2)
         {

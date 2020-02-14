@@ -42,42 +42,22 @@ class municipioController extends AppBaseController
 
     public function dashboardMunicipio(Request $los)
     {
-        $id = Auth::user()->idusuario;
+        $id = Auth::user()->idUsuario;
 
-        //se obtienen los estados
-        $estado = DB::table('estado_1')
-            ->join('municipio_1','municipio_1.idestado','=','estado_1.idestado')
-            ->join('usuario_municipio','usuario_municipio.idmunicipio','=','municipio_1.idmunicipio')
-            ->select('estado_1.idestado','estado_1.estado')
-            ->where('usuario_municipio.idusuario',$id)
-            ->first();
+        $builder = DB::table('usuario')
+            ->leftJoin('usuario_municipio','usuario_municipio.idusuario','=','usuario.idusuario')
+            ->leftJoin('municipio','municipio.idmunicipio','=','usuario_municipio.idmunicipio')
+            ->leftJoin('estado','estado.idestado','=','municipio.idestado')
+            ->where('usuario.idusuario',$id)->first();
 
-        // se obtiene el municipio
-        $municipio = DB::table('municipio_1')
-            ->join('usuario_municipio','usuario_municipio.idmunicipio','=','municipio_1.idmunicipio')
-            ->select('municipio_1.idmunicipio','municipio_1.municipio')
-            ->where('usuario_municipio.idusuario',$id)
-            ->first();
-
-        //CONSULTA MOVIMIENTOS PARA TABLA
-        $builder = DB::table('movimiento')
-            ->select('fechamovimiento','numoficio','fechaoficio','comentario','status','observacion')
-            ->where('id_usuario',$id)
-            ->get();
-
-        return view('MUNICIPIO.dashboard')
-            ->with('estado',$estado->estado)
-            ->with('municipio',$municipio->municipio)
-            ->with('idestado',$estado->idestado)
-            ->with('idmunicipio',$municipio->idmunicipio)
-            ->with('datos',$builder);
+        return view('MUNICIPIO.dashboard')->with('municipio',$builder->municipio);
 
     }
 
 
     public function cargaArchivos(Request $request)
     {
-        
+
         $id_usuario = Auth::user()->idusuario;
 
         $ministracion =  DB::table('ministracion')
