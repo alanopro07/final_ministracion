@@ -50,11 +50,13 @@ class municipioController extends AppBaseController
             ->leftJoin('estado','estado.idestado','=','municipio.idestado')
             ->where('usuario.idusuario',$id)->first();
 
-        //llamadp a la funcion para e guardado
-        $consulta = $this->consultaTabla();
 
-        return view('MUNICIPIO.dashboard')->with('municipio',$builder->municipio)
-            ->with('consulta',$consulta);
+        //llamadp a la funcion para e guardado
+//        $consulta = $this->consultaTabla(Auth::user(),$builder);
+
+        return view('MUNICIPIO.dashboard')->with([
+            'municipio'=>$builder->municipio,
+            'estado'=>$builder->estado]);
 
     }
 
@@ -62,33 +64,22 @@ class municipioController extends AppBaseController
     public function cargaArchivos(Request $request)
     {
 
-        $id_usuario = Auth::user()->idusuario;
-
-        $ministracion =  DB::table('ministracion')
-            ->select('idministracion')
-            ->where([
-                ['idestado',$request['estado']],
-                ['idmunicipio',$request['municipio']]
-            ])
-            ->first();
-
-
         // se inicia el llenado de ministración
-        DB::beginTransaction();
-        DB::table('movimiento')->insert([
-            'idministracion' => $ministracion->idministracion,
-            'fechamovimiento' =>Carbon::now(),
-            'numoficio' => $request['numero_oficio'],
-            'fechaoficio' => $request['fecha_oficio'],
-            'id_usuario' => $id_usuario,
-            'tipomovimiento' => movimientoModel::MUNICIPIO,
-            'comentario' => $request['comentario'],
-            'paso' => movimientoModel::Paso_inicial,
-            'origen' => movimientoModel::MUNICIPIO,
-            'destino' => movimientoModel::DGVA,
-            'status' => movimientoModel::ESTATUS_ENVIADO
-            ]);
-        DB::commit();
+//        DB::beginTransaction();
+//        DB::table('movimiento')->insert([
+//            'idministracion' => $ministracion->idministracion,
+//            'fechamovimiento' =>Carbon::now(),
+//            'numoficio' => $request['numero_oficio'],
+//            'fechaoficio' => $request['fecha_oficio'],
+//            'id_usuario' => $id_usuario,
+//            'tipomovimiento' => movimientoModel::MUNICIPIO,
+//            'comentario' => $request['comentario'],
+//            'paso' => movimientoModel::Paso_inicial,
+//            'origen' => movimientoModel::MUNICIPIO,
+//            'destino' => movimientoModel::DGVA,
+//            'status' => movimientoModel::ESTATUS_ENVIADO
+//            ]);
+//        DB::commit();
 
 //        dd($request->toArray());
         //respuesta
@@ -179,8 +170,9 @@ class municipioController extends AppBaseController
         return view('MUNICIPIO.documentos.domicilio');
     }
 
-    public function consultaTabla()
+    public function consultaTabla($request,$datos)
     {
+        dd($datos);
         //aqui se cinsultara lo relacionado al dashboard del municipio
 
 
