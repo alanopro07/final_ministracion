@@ -23,6 +23,7 @@ Route::get('/prueba','usuarioModelController@prueba')->name('prueba');
 //rutas de dashboard
 Route::get('municipio','municipioController@dashboardMunicipio')->name('municipio');
 Route::post('cargarArchivos','municipioController@cargaArchivos')->name('cargarArchivos');
+Route::post('/municipio/crear_movimiento', 'municipioController@update_municipalityActivity');
 
 //carga de datos carta bancaria
 Route::get('cargaCartaBancaria','municipioController@cargaCartaBancaria')->name('cargacartabancaria');//revisado

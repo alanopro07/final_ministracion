@@ -177,4 +177,9 @@ class municipioController extends AppBaseController
 
 
     }
+
+    public function update_municipalityActivity(Request $formData_request) {
+        
+        //return back()->with('success','Operacion creada con exito!');
+    }
 }
