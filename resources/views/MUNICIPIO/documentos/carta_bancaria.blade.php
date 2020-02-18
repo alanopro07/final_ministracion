@@ -4,7 +4,7 @@
         <div class="row text-center">
             <div class="col-md-12 bg-light">
                 <h3 class="text-center bg-light">Carta bancaria para  recurso federal</h3>
-            </div>
+                </div>
                 <div class="col-md-6 bg-light">
                     {{ Form::open(array('url' => 'cargaDatosCartaBancaria', 'method' => 'post' , 'accept-charset' =>"UTF-8",'enctype' => 'multipart/form-data'))  }}
 

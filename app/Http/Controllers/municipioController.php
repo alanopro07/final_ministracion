@@ -42,21 +42,19 @@ class municipioController extends AppBaseController
 
     public function dashboardMunicipio(Request $los)
     {
-        $id = Auth::user()->idUsuario;
+//        $id = Auth::user()->idUsuario;
+//
+//        $builder = DB::table('usuario')
+//            ->leftJoin('usuario_municipio','usuario_municipio.idusuario','=','usuario.idusuario')
+//            ->leftJoin('municipio','municipio.idmunicipio','=','usuario_municipio.idmunicipio')
+//            ->leftJoin('estado','estado.idestado','=','municipio.idestado')
+//            ->where('usuario.idusuario',$id)
+//            ->first();
 
-        $builder = DB::table('usuario')
-            ->leftJoin('usuario_municipio','usuario_municipio.idusuario','=','usuario.idusuario')
-            ->leftJoin('municipio','municipio.idmunicipio','=','usuario_municipio.idmunicipio')
-            ->leftJoin('estado','estado.idestado','=','municipio.idestado')
-            ->where('usuario.idusuario',$id)->first();
-
-
-        //llamadp a la funcion para e guardado
+        //llamado a la funcion para e guardado
 //        $consulta = $this->consultaTabla(Auth::user(),$builder);
 
-        return view('MUNICIPIO.dashboard')->with([
-            'municipio'=>$builder->municipio,
-            'estado'=>$builder->estado]);
+        return view('MUNICIPIO.dashboard');
 
     }
 
@@ -64,24 +62,24 @@ class municipioController extends AppBaseController
     public function cargaArchivos(Request $request)
     {
 
-        // se inicia el llenado de ministración
-//        DB::beginTransaction();
-//        DB::table('movimiento')->insert([
-//            'idministracion' => $ministracion->idministracion,
-//            'fechamovimiento' =>Carbon::now(),
-//            'numoficio' => $request['numero_oficio'],
-//            'fechaoficio' => $request['fecha_oficio'],
-//            'id_usuario' => $id_usuario,
-//            'tipomovimiento' => movimientoModel::MUNICIPIO,
-//            'comentario' => $request['comentario'],
-//            'paso' => movimientoModel::Paso_inicial,
-//            'origen' => movimientoModel::MUNICIPIO,
-//            'destino' => movimientoModel::DGVA,
-//            'status' => movimientoModel::ESTATUS_ENVIADO
-//            ]);
-//        DB::commit();
+//         se inicia el llenado de ministración
+        DB::beginTransaction();
+        DB::table('movimiento')->insert([
+            'idministracion' => $ministracion->idministracion,
+            'fechamovimiento' =>Carbon::now(),
+            'numoficio' => $request['numero_oficio'],
+            'fechaoficio' => $request['fecha_oficio'],
+            'id_usuario' => $id_usuario,
+            'tipomovimiento' => movimientoModel::MUNICIPIO,
+            'comentario' => $request['comentario'],
+            'paso' => movimientoModel::Paso_inicial,
+            'origen' => movimientoModel::MUNICIPIO,
+            'destino' => movimientoModel::DGVA,
+            'status' => movimientoModel::ESTATUS_ENVIADO
+            ]);
+        DB::commit();
 
-//        dd($request->toArray());
+        dd($request->toArray());
         //respuesta
         $file_comprobante_nombramiento = !empty($request->file('constancia_nombramiento')) ? $request->file('constancia_nombramiento') : '';
         $name_comprobante_nombramiento = $file_comprobante_nombramiento->getClientOriginalName();

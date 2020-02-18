@@ -5,6 +5,15 @@ body{
     }
 }
 
+input:focus, input.form-control:focus {
+
+    outline:none !important;
+    outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
 .subir-archivos{
     background: #f8f8f8;
     padding-top: 10px;
